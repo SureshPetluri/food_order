@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 class TextWidget extends StatelessWidget {
   final String text;
   final Color color;
-  double size;
-  TextWidget({Key? key,
+  final double size;
+  const TextWidget({Key? key,
     required this.text,
     required this.color,
     this.size=12
