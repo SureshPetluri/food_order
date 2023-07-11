@@ -229,17 +229,17 @@ class _ProductsGridState extends State<ProductsGrid> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 5.0),
                         child: Container(
-                          height: 12,
-                          width: 12,
+                          height: 8,
+                          width: _currPageValue == index ?20:8,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            border: Border.all(
-                              color: Colors.black,
-                              width: 1, // Specify the width of the border
-                        ),
+                        //     border: Border.all(
+                        //       color: Colors.black,
+                        //       width: 1, // Specify the width of the border
+                        // ),
                         color: _currPageValue == index
                             ? Colors.green
-                            : Colors.white,
+                            : Colors.grey.shade300,
                       ),
                     ),
                   ),
