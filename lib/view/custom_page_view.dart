@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:nominatim_geocoding/nominatim_geocoding.dart';
 
 import '../theme/app_colors.dart';
 import 'custom_widgets/app_text.dart';
@@ -15,9 +17,12 @@ class _ProductsGridState extends State<ProductsGrid> {
   PageController pageController = PageController(viewportFraction: 0.85);
   PageController pageListController = PageController(viewportFraction: 0.98);
   int _currPageValue = 0;
+  String state = "";
+  String localArea = "";
 
   @override
   void initState() {
+    getAddress();
     super.initState();
   }
 
@@ -138,21 +143,21 @@ class _ProductsGridState extends State<ProductsGrid> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0.0,
-        title: const Align(
+        title: Align(
           alignment: Alignment.centerLeft,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Hyderabad",
-                style: TextStyle(
+                state,
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16,
                 ),
               ),
               Text(
-                "Gacchi bowli",
-                style: TextStyle(
+                localArea,
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 12,
                 ),
@@ -279,4 +284,41 @@ class _ProductsGridState extends State<ProductsGrid> {
     "assest/img/mandi-1.webp",
     "assest/img/pod_biryani.jpeg"
   ];
+
+  /// Determine the current position of the device.
+
+  Future<Position> determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+    return await Geolocator.getCurrentPosition(
+        forceAndroidLocationManager: true,
+        desiredAccuracy: LocationAccuracy.high);
+  }
+
+  getAddress() async {
+    Position position = await determinePosition();
+    Coordinate coordinate =
+        Coordinate(latitude: position.latitude, longitude: position.longitude);
+    Geocoding geocoding =
+        await NominatimGeocoding.to.reverseGeoCoding(coordinate);
+    setState(() {
+      state = geocoding.address.district;
+      localArea = geocoding.address.city;
+    });
+  }
 }

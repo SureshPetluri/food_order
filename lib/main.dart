@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:food_order/view/custom_page_view.dart';
+import 'package:nominatim_geocoding/nominatim_geocoding.dart';
 
-void main() {
+Future<void> main() async {
+  await NominatimGeocoding.init(reqCacheNum: 20);
   runApp(const MyApp());
 }
 
