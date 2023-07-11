@@ -55,8 +55,10 @@ class CustomCard extends StatelessWidget {
             margin: EdgeInsets.zero,
             child: Container(
               margin: EdgeInsets.symmetric(
-                horizontal: MediaQuery.sizeOf(context).width > 300 ? 20 : 10,
+                horizontal: MediaQuery.sizeOf(context).width > 400 ? 20 : 10,
+
               ),
+              width:MediaQuery.sizeOf(context).width > 450 ? MediaQuery.sizeOf(context).width-200:null,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -76,6 +78,7 @@ class CustomCard extends StatelessWidget {
                     ),
                   ),
                   Row(
+                    mainAxisAlignment : MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
                         children: [

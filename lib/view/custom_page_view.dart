@@ -87,17 +87,17 @@ class _ProductsGridState extends State<ProductsGrid> {
                                 (index) => const Icon(Icons.star,
                                     color: AppColors.mainColor, size: 15)),
                           ),
+                           SizedBox(
+                            width: MediaQuery.sizeOf(context).width > 380 ? 10 : 4,
+                          ),
+                          const TextWidget(
+                              text: "4.5", color: Color(0xFFccc7c5)),
                           const SizedBox(
                             width: 10,
                           ),
-                          TextWidget(
-                              text: "4.5", color: const Color(0xFFccc7c5)),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          TextWidget(
+                          const TextWidget(
                               text: "1287 comments",
-                              color: const Color(0xFFccc7c5))
+                              color: Color(0xFFccc7c5))
                         ],
                       ),
                       const SizedBox(
