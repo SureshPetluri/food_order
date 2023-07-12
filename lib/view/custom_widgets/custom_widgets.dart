@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:nominatim_geocoding/nominatim_geocoding.dart';
 
 import 'app_text.dart';
-
 
 class IconAndTextWidget extends StatelessWidget {
   final IconData icon;
   final String text;
   final Color color;
   final Color iconColor;
-  const IconAndTextWidget({Key? key,
-    required this.text,
-    this.color=const Color(0xFF76c5bb),
-    this.iconColor= const Color(0xFF93ddd4),
-    required this.icon}) : super(key: key);
+
+  const IconAndTextWidget(
+      {Key? key,
+      required this.text,
+      this.color = const Color(0xFF76c5bb),
+      this.iconColor = const Color(0xFF93ddd4),
+      required this.icon})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -123,4 +127,78 @@ class CustomCard extends StatelessWidget {
       ),
     );
   }
+}
+
+SizedBox buildSizedBoxH30() => SizedBox(height: 30,);
+SizedBox buildSizedBoxH40() => SizedBox(height: 40,);
+ValueNotifier<bool> obscureNotifier = ValueNotifier<bool>(true);
+ValueNotifier<Map> cityNotifier = ValueNotifier<Map>({});
+
+InputDecoration buildInputDecoration(
+  String name,
+  IconData iconData,
+) {
+  return InputDecoration(
+    hintText: name,
+    suffixIcon: IconButton(
+      onPressed: () {
+        if (name == "Password") {
+          obscureNotifier.value = !obscureNotifier.value;
+        }
+      },
+      icon: Icon(iconData),
+    ),
+    border: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+        borderSide: BorderSide(color: Colors.green)),
+    errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+        borderSide: BorderSide(color: Colors.red)),
+    enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+        borderSide: BorderSide(color: Colors.blue)),
+    focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+        borderSide: BorderSide(color: Colors.yellow)),
+    focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+        borderSide: BorderSide(color: Colors.red)),
+  );
+}
+
+/// Determine the current position of the device.
+
+Future<Position> determinePosition() async {
+  bool serviceEnabled;
+  LocationPermission permission;
+  serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  if (!serviceEnabled) {
+    return Future.error('Location services are disabled.');
+  }
+  permission = await Geolocator.checkPermission();
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {
+      return Future.error('Location permissions are denied');
+    }
+  }
+  if (permission == LocationPermission.deniedForever) {
+    return Future.error(
+        'Location permissions are permanently denied, we cannot request permissions.');
+  }
+  return await Geolocator.getCurrentPosition(
+      forceAndroidLocationManager: true,
+      desiredAccuracy: LocationAccuracy.high);
+}
+
+getAddress() async {
+  Position position = await determinePosition();
+  Coordinate coordinate =
+      Coordinate(latitude: position.latitude, longitude: position.longitude);
+  Geocoding geocoding =
+      await NominatimGeocoding.to.reverseGeoCoding(coordinate);
+  cityNotifier.value = {
+    "city": geocoding.address.district,
+    "local": geocoding.address.city
+  };
 }

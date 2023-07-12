@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../custom_page_view.dart';
+import '../sign_in/sign_in_screen.dart';
 
 class OnBoardScreen extends StatefulWidget {
   const OnBoardScreen({Key? key}) : super(key: key);
@@ -90,7 +91,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
 
             } else {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ProductsGrid()));
+                  MaterialPageRoute(builder: (context) => SignInScreen()));
             }
           },
           child: Container(
