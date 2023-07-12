@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:nominatim_geocoding/nominatim_geocoding.dart';
 
 import '../theme/app_colors.dart';
 import 'custom_widgets/app_text.dart';
@@ -140,6 +138,13 @@ class _ProductsGridState extends State<ProductsGrid> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 8.0, top: 8.0, bottom: 8.0),
+          child: CircleAvatar(
+            backgroundColor: Colors.green,
+            radius: 30,
+          ),
+        ),
         elevation: 0.0,
         title: Align(
           alignment: Alignment.centerLeft,
@@ -148,7 +153,8 @@ class _ProductsGridState extends State<ProductsGrid> {
             children: [
               ValueListenableBuilder<Map>(
                 valueListenable: cityNotifier,
-                builder: (context, value, child) =>  Column(
+                builder: (context, value, child) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       value["city"] ?? "",
@@ -167,7 +173,6 @@ class _ProductsGridState extends State<ProductsGrid> {
                   ],
                 ),
               ),
-
             ],
           ),
         ),
