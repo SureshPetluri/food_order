@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_order/view/custom_page_view.dart';
+import 'package:food_order/view/on_boarding/on_board_screen.dart';
 import 'package:nominatim_geocoding/nominatim_geocoding.dart';
 
 Future<void> main() async {
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home:  ProductsGrid()
+        home:  OnBoardScreen()
     );
   }
 }
