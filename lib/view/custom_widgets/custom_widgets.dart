@@ -144,7 +144,7 @@ InputDecoration buildInputDecoration(
     hintText: name,
     suffixIcon: IconButton(
       onPressed: () {
-        if (name == "Password") {
+        if (name == "Password" || name == "Conform Password") {
           obscureNotifier.value = !obscureNotifier.value;
         }
       },

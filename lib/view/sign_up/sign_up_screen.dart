@@ -44,7 +44,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 valueListenable: obscureNotifier,
                 builder: (context, value, child) => TextFormField(
                   obscureText: value,
-                  decoration: buildInputDecoration("ConForm Password",
+                  decoration: buildInputDecoration("Conform Password",
                       value ? Icons.lock_outline : Icons.lock_open_outlined),
                 ),
               ),
