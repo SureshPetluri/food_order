@@ -139,6 +139,8 @@ InputDecoration buildInputDecoration(
   IconData iconData,
 ) {
   return InputDecoration(
+    fillColor: Colors.grey.shade300,
+    filled: true,
     hintText: name,
     suffixIcon: IconButton(
       onPressed: () {
@@ -149,19 +151,19 @@ InputDecoration buildInputDecoration(
       icon: Icon(iconData),
     ),
     border: const OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+        borderRadius: BorderRadius.all(Radius.circular(15.0)),
         borderSide: BorderSide(color: Colors.green)),
     errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+        borderRadius: BorderRadius.all(Radius.circular(15.0)),
         borderSide: BorderSide(color: Colors.red)),
     enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+        borderRadius: BorderRadius.all(Radius.circular(15.0)),
         borderSide: BorderSide(color: Colors.blue)),
     focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+        borderRadius: BorderRadius.all(Radius.circular(15.0)),
         borderSide: BorderSide(color: Colors.yellow)),
     focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+        borderRadius: BorderRadius.all(Radius.circular(15.0)),
         borderSide: BorderSide(color: Colors.red)),
   );
 }

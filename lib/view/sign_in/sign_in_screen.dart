@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../custom_page_view.dart';
 import '../custom_widgets/custom_widgets.dart';
+import '../sign_up/sign_up_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class _SignInScreenState extends State<SignInScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Align(alignment: Alignment.centerLeft, child: Text("SIgn In")),
+          const Align(alignment: Alignment.centerLeft, child: Text("SIgn In",style: TextStyle(fontSize: 24,fontWeight: FontWeight.w800),)),
           buildSizedBoxH30(),
           TextFormField(
             decoration: buildInputDecoration("Mobile", Icons.email_outlined),
@@ -52,9 +53,16 @@ class _SignInScreenState extends State<SignInScreen> {
             ),
           ),
           buildSizedBoxH30(),
-          const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text("You don't have an account? "),
-            Text("Sign Up"),
+            InkWell(
+                onTap: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SignUpScreen()));
+                },
+                child: Text("Sign Up",style: TextStyle(color: Colors.blue),))
           ])
         ],
       ),
