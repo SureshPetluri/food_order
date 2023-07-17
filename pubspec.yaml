@@ -37,7 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   geolocator: ^9.0.2
   nominatim_geocoding: ^0.0.6
-
+  local_auth: ^2.1.6
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -63,6 +63,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assest/img/
+    - assest/images/
+    - assest/images/desserts/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

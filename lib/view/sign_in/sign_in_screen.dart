@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import '../biometric/local_auth.dart';
 import '../custom_page_view.dart';
 import '../custom_widgets/custom_widgets.dart';
 import '../sign_up/sign_up_screen.dart';
@@ -91,8 +93,21 @@ class _SignInScreenState extends State<SignInScreen> {
                           child: Text(
                             "Sign Up",
                             style: TextStyle(color: Colors.blue),
-                          ))
-                    ])
+                          )),
+                    ]),
+                    !kIsWeb ?Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: IconButton(
+                        iconSize: 70,
+                        icon: const Icon(
+                          Icons.fingerprint,
+                          color: Colors.cyan,
+                        ),
+                        onPressed: (){
+                         authenticationLocalAuth(context);
+                        },
+                      ),
+                    ):const SizedBox(),
                   ],
                 ),
               ),
@@ -108,4 +123,21 @@ class _SignInScreenState extends State<SignInScreen> {
     getAddress();
     super.initState();
   }
+
+  authenticationLocalAuth(BuildContext context) async {
+    bool authComplete = false;
+    bool getLocalDetails = await LocalAuth().authenticateWithNameAndPassword();
+    if (getLocalDetails ==true) {
+      authComplete = await LocalAuth.authenticate();
+    }
+    if (authComplete) {
+      // AuthRepository.loginComplete("completed");
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => const ProductsGrid(),),);
+    }
+  }
+
+
 }
