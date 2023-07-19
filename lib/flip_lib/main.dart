@@ -20,12 +20,7 @@ class TripCardCollection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFEAE2D5),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          TripCard(),
-        ],
-      ),
+      body: TripCard(),
     );
   }
 }

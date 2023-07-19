@@ -31,6 +31,7 @@ class _AnimatedScreenState extends State<AnimatedScreen> {
 
   @override
   void initState() {
+
     _animation = Tween(begin: 0.0, end: 1.0).animate(widget.controller)
       ..addListener(() {
         setState(() {});

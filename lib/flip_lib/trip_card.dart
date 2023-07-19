@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'animated_screen.dart';
@@ -37,36 +36,34 @@ class _TripCardState extends State<TripCard>
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: InkWell(
-        onTap: () {
-          // if (value) {
-            _controller.forward();
-          // } else {
-          //   _controller.reverse();
-          // }
-        },
-        onHover: (value) {
+    return InkWell(
+      onTap: () {
+        // if (value) {
+          _controller.forward();
+        // } else {
+        //   _controller.reverse();
+        // }
+      },
+      onHover: (value) {
 
-        },
-        child: Transform.translate(
-          offset: _animation.value,
-          child: Stack(
-            alignment: Alignment.center,
-            children: <Widget>[
-              InkWell(
-                onTap: (){
-                  _controller.reverse();
-                },
-                child: InsideScreen(
-                  title: 'For urban lovers',
-                  information:
-                      'As cities never sleep, there are always something going on, no matter what time!',
-                ),
+      },
+      child: Transform.translate(
+        offset: _animation.value,
+        child: Stack(
+          // alignment: Alignment.center,
+          children: <Widget>[
+            InkWell(
+              onTap: (){
+                _controller.reverse();
+              },
+              child: InsideScreen(
+                title: 'For urban lovers',
+                information:
+                    'As cities never sleep, there are always something going on, no matter what time!',
               ),
-              AnimatedScreen(controller: _controller),
-            ],
-          ),
+            ),
+            AnimatedScreen(controller: _controller),
+          ],
         ),
       ),
     );

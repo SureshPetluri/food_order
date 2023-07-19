@@ -138,8 +138,8 @@ class _ProductsGridState extends State<ProductsGrid> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 8.0, top: 8.0, bottom: 8.0),
+        leading: const Padding(
+          padding: EdgeInsets.only(left: 8.0, top: 8.0, bottom: 8.0),
           child: CircleAvatar(
             backgroundColor: Colors.green,
             radius: 30,
