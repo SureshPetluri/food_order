@@ -67,16 +67,21 @@ class _NewsAppUsingPageViewState extends State<NewsAppUsingPageView>
                 matchEngine: _matchEngine!,
                 itemBuilder: (BuildContext context, int index) {
                   String date = _swipeItems[index].content.updatedDate;
+                  print("content date is $date");
                   String time = date.split(" ")[1];
-                  String contentTime0 = time.split(":")[0];
-                  String contentTime1 = time.split(":")[1];
+                  int contentTime = (int.parse(time.split(":")[0])*60) + int.parse(time.split(":")[1]);
 
                   String presentDate = DateTime.now().toString();
                   String presentTime = presentDate.split(" ")[1];
-                  String presentContentTime0 = presentTime.split(":")[0];
-                  String presentContentTime1 = presentTime.split(":")[1];
-                  String correctTime =
-                      "${int.parse(presentContentTime0) - int.parse(contentTime0)} :${int.parse(presentContentTime1) - int.parse(contentTime1)}";
+                  int presentContentTime = (int.parse(presentTime.split(":")[0])*60) + int.parse(presentTime.split(":")[1]);
+                  int correctTime = 0;
+                  if(contentTime > presentContentTime){
+                     correctTime =contentTime - presentContentTime;
+                  }else{
+                     correctTime = presentContentTime - contentTime;
+                  }
+
+
                   // print("${int.parse(presentContentTime0) -int.parse(contentTime0)}  ${contentTime1} ${presentContentTime1}");
                   return Container(
                     color: Colors.white,
@@ -103,7 +108,7 @@ class _NewsAppUsingPageViewState extends State<NewsAppUsingPageView>
               )
             ]);
           } else if (snapshot.hasError) {
-            return Center(
+            return const Center(
               child: Text('Failed to fetch news'),
             );
           } else {
@@ -117,7 +122,7 @@ class _NewsAppUsingPageViewState extends State<NewsAppUsingPageView>
   }
 
   Column buildWithOutScrollColumn(
-      int index, BuildContext context, List<dynamic>? articles, String time) {
+      int index, BuildContext context, List<dynamic>? articles, int time) {
     return Column(
       children: [
         Padding(
@@ -155,8 +160,8 @@ class _NewsAppUsingPageViewState extends State<NewsAppUsingPageView>
                 color: Colors.grey,
                 size: 20,
               ),
-              Text("  $time min ago/ "),
-              Text("$index of ${articles?.length} "),
+              Text("  ${(time/60).ceil()}:${(time%60)..ceil()}min ago/ "),
+              Text("$index of ${_swipeItems.length} "),
             ],
           ),
         ),
