@@ -9,7 +9,7 @@ Future<List<dynamic>> fetchNews(String country,String category) async {
   if (response.statusCode == 200) {
     final jsonResponse = jsonDecode(response.body);
     final articles = jsonResponse['results'];
-    return articles;
+    return await articles;
   } else {
     throw Exception('Failed to fetch news');
   }

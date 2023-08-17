@@ -1,74 +1,62 @@
+// Example usage
 import 'package:flutter/material.dart';
 import 'package:swipe_cards/swipe_cards.dart';
 
-import 'provider.dart';
+import '../news_main.dart';
+import '../provider.dart';
+import 'bloc_manage/news_bloc.dart';
+import 'bloc_manage/news_event.dart';
+import 'bloc_manage/news_state.dart';
 
-void main() {
-  runApp(
-    MyApp(),
-  );
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class NewsAppUsingSWipeBloc extends StatefulWidget {
+  const NewsAppUsingSWipeBloc({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: NewsAppUsingPageView(),
-    );
-  }
+  State<NewsAppUsingSWipeBloc> createState() => _NewsAppUsingSWipeBlocState();
 }
 
-class NewsAppUsingPageView extends StatefulWidget {
-  const NewsAppUsingPageView({Key? key}) : super(key: key);
-
-  @override
-  State<NewsAppUsingPageView> createState() => _NewsAppUsingPageViewState();
-}
-
-class _NewsAppUsingPageViewState extends State<NewsAppUsingPageView>
+class _NewsAppUsingSWipeBlocState extends State<NewsAppUsingSWipeBloc>
     with TickerProviderStateMixin {
+  final NewsBloc _newsBloc = NewsBloc();
   PageController pageController = PageController(viewportFraction: 0.99);
   List<SwipeItem> _swipeItems = <SwipeItem>[];
-  MatchEngine _matchEngine=MatchEngine();
-   // List? articles;
-  // @override
-  // Future<void> initState() async {
-  //   super.initState();
-  //   articles = await fetchNews("in", "health");
-  // }
+  MatchEngine? _matchEngine;
+
+  @override
+  void initState() {
+    super.initState();
+    _newsBloc.mapEventToState(FetchNewsEvent("in", "health"));
+  }
+
+  @override
+  void dispose() {
+    _newsBloc.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //business,entertainment,environment,food,health,politics,science,sports,technology,top,tourism,world
-      body: FutureBuilder(
-        future: fetchNews("in", "health"),
+      body: StreamBuilder<NewsState>(
+        stream: _newsBloc.newsStream,
+        // initialData: InitialState(),
         builder: (context, snapshot) {
-          final articles = snapshot.data;
-
-          for (int i = 0; i < (articles?.length ?? 0); i++) {
-            final article = articles?[i];
-            _swipeItems.add(SwipeItem(
-              content: Content(
-                imageUrl: article["image_url"] ?? "",
-                title: article['title'] ?? "",
-                content: article['content'] ?? "",
-                description: article['description'] ?? "",
-                updatedDate: article['pubDate'] ?? "",
-                like: false,
-                unLike: false,
-              ),
-            ));
-          }
-          _matchEngine = MatchEngine(swipeItems: _swipeItems);
-
-          if (snapshot.hasData) {
+          final state = snapshot.data;
+          if (state is InitialState) {
+            return const Center(child: Text("InitialState"));
+            // Show initial state UI
+          } else if (state is LoadingState) {
+            return const Center(child: Text("LoadingState"));
+            // Show loading state UI
+          } else if (state is ErrorState) {
+            return const Center(child: Text("ErrorState"));
+            // Show error state UI
+          } else if (state is LoadedState) {
+            final articles = state.articles;
+            // Show loaded state UI
             return Stack(children: [
               SwipeCards(
-                matchEngine: _matchEngine,
+                matchEngine: _matchEngine!,
                 itemBuilder: (BuildContext context, int index) {
                   final content = _swipeItems[index].content;
                   String date = _swipeItems[index].content.updatedDate;
@@ -96,32 +84,29 @@ class _NewsAppUsingPageViewState extends State<NewsAppUsingPageView>
                   var dataFetch = await fetchNews("in", "business,");
                   for (int i = 0; i < (dataFetch.length); i++) {
                     final data = dataFetch[i];
-                    _swipeItems.add(SwipeItem(
-                      content: Content(
-                        imageUrl: data["image_url"] ?? "",
-                        title: data['title'] ?? "",
-                        content: data['content'] ?? "",
-                        description: data['description'] ?? "",
-                        updatedDate: data['pubDate'] ?? "",
-                        like: false,
-                        unLike: false,
+                    _swipeItems.add(
+                      SwipeItem(
+                        content: Content(
+                          imageUrl: data["image_url"] ?? "",
+                          title: data['title'] ?? "",
+                          content: data['content'] ?? "",
+                          description: data['description'] ?? "",
+                          updatedDate: data['pubDate'] ?? "",
+                          like: false,
+                          unLike: false,
+                        ),
                       ),
-                    ));
+                    );
                   }
-                  setState(() {});
                   _matchEngine = MatchEngine(swipeItems: _swipeItems);
+                  setState(() {});
                 },
               )
             ]);
-          } else if (snapshot.hasError) {
-            return const Center(
-              child: Text('Failed to fetch news'),
-            );
-          } else {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
           }
+
+          // Return appropriate UI based on the state
+          return Container();
         },
       ),
     );
@@ -166,7 +151,7 @@ class _NewsAppUsingPageViewState extends State<NewsAppUsingPageView>
                 color: Colors.grey,
                 size: 20,
               ),
-              Text("  ${(time/60).ceil()}:${(time%60)..ceil()}min ago/ "),
+              Text("  ${(time / 60).ceil()}:${(time % 60)..ceil()}min ago/ "),
               Text("$index of ${_swipeItems.length} "),
             ],
           ),
@@ -179,7 +164,7 @@ class _NewsAppUsingPageViewState extends State<NewsAppUsingPageView>
         ),
         MediaQuery.sizeOf(context).width > 300
             ? buildLikeRow(index, content)
-            : buildLikeBelowRow(content)
+            : buildLikeBelowRow()
       ],
     );
   }
@@ -189,47 +174,47 @@ class _NewsAppUsingPageViewState extends State<NewsAppUsingPageView>
       children: [
         IconButton(
           onPressed: () {
-             setState(() {
-            content.like = true;
-             });
+            setState(() {
+              content.like = true;
+            });
           },
           icon: Icon(Icons.thumb_up_sharp),
           color: (content.like ?? false) ? Colors.blue : Colors.grey,
         ),
-        const SizedBox(
+        SizedBox(
           width: 5,
         ),
-        const Text("1k"),
-        const SizedBox(
+        Text("data"),
+        SizedBox(
           width: 10,
         ),
         IconButton(
           onPressed: () {
-             setState(() {
-            content.unLike = true;
-             });
+            setState(() {
+              content.unLike = true;
+            });
           },
-          icon: const Icon(Icons.thumb_down),
+          icon: Icon(Icons.thumb_down),
           color: (content.unLike ?? false) ? Colors.blue : Colors.grey,
         ),
-        const SizedBox(
+        SizedBox(
           width: 5,
         ),
-        Text("100"),
-        const SizedBox(
+        Text("data"),
+        SizedBox(
           width: 10,
         ),
         IconButton(onPressed: () {}, icon: Icon(Icons.comment_bank_outlined)),
-        const SizedBox(
+        SizedBox(
           width: 5,
         ),
-        const Text("20"),
-        const SizedBox(
+        Text("data"),
+        SizedBox(
           width: 10,
         ),
-        const Spacer(),
-        IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert)),
-        const SizedBox(
+        Spacer(),
+        IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
+        SizedBox(
           width: 10,
         ),
         IconButton(onPressed: () {}, icon: Icon(Icons.share)),
@@ -237,27 +222,24 @@ class _NewsAppUsingPageViewState extends State<NewsAppUsingPageView>
     );
   }
 
-  Row buildLikeBelowRow(Content content) {
+  Row buildLikeBelowRow() {
     return Row(
       children: [
-        buildColumn(Icons.thumb_up_sharp, content),
-        const SizedBox(
+        buildColumn(Icons.thumb_up_sharp),
+        SizedBox(
           width: 5,
         ),
-        buildColumn(
-          Icons.thumb_down,
-          content,
-        ),
-        const SizedBox(
+        buildColumn(Icons.thumb_down),
+        SizedBox(
           width: 10,
         ),
-        buildColumn(Icons.comment_bank_outlined, content),
-        const SizedBox(
+        buildColumn(Icons.comment_bank_outlined),
+        SizedBox(
           width: 10,
         ),
-        const Spacer(),
+        Spacer(),
         IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
-        const SizedBox(
+        SizedBox(
           width: 10,
         ),
         IconButton(onPressed: () {}, icon: Icon(Icons.share)),
@@ -265,43 +247,13 @@ class _NewsAppUsingPageViewState extends State<NewsAppUsingPageView>
     );
   }
 
-  Column buildColumn(IconData icon, Content content) {
+  Column buildColumn(IconData icon) {
     return Column(
       children: [
         IconButton(
-            padding: EdgeInsets.zero,
-            onPressed: () {
-              if (icon == Icons.thumb_up_sharp) {
-                content.like = true;
-              } else if (icon == Icons.thumb_down) {
-                content.unLike = true;
-              }
-              setState(() {
-
-              });
-            },
-            icon: Icon(icon)),
-        const Text("100"),
+            padding: EdgeInsets.zero, onPressed: () {}, icon: Icon(icon)),
+        Text("data"),
       ],
     );
   }
-}
-
-class Content {
-  final String? imageUrl;
-  final String? title;
-  final String? description;
-  final String? content;
-  final String? updatedDate;
-  bool? like;
-  bool? unLike;
-
-  Content(
-      {this.imageUrl,
-      this.title,
-      this.description,
-      this.content,
-      this.like,
-      this.unLike,
-      this.updatedDate});
 }
