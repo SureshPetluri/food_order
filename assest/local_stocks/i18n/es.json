@@ -1,0 +1,41 @@
+{
+  "resume": {
+    "scroll": "Role para cima",
+    "new": "New cima {} off",
+    "welcome": "BEM-VINDO AO MEU PORTFÓLIO!",
+    "name": "Petluri Suresh",
+    "title": "Senior Flutter Developer",
+    "light": "Changed to Light Mode",
+    "dark": "Changed to Dark Mode",
+    "about": "Sobre mim",
+    "des": "Com mais de 5 anos de experiência no setor de desenvolvimento de aplicativos móveis, aprimorei minhas habilidades em várias áreas. Minha experiência inclui mais de 3 anos trabalhando com Flutter e mais de 2 anos de experiência em desenvolvimento iOS. Sou proficiente na utilização de APIs REST, tratamento de dados JSON, implementação de mecanismos de autenticação, integração do Google Maps e incorporação de notificações push. Além disso, possuo um forte conhecimento de técnicas de gerenciamento de estado como GetX, provedores e widgets na estrutura Flutter, permitindo-me criar aplicativos robustos e eficientes.",
+    "work":  "Em termos de gerenciamento de banco de dados, tenho experiência prática com soluções de armazenamento local em Flutter, como SQFlite, Get Storage e Hive. Além disso, sou versado na utilização de bancos de dados sem servidor, como o Firebase, permitindo a integração e sincronização perfeitas de dados para melhorar a funcionalidade do aplicativo. Minha experiência se estende à depuração e solução de problemas de código existente, utilizando habilidades eficazes de resolução de problemas e técnicas de análise de log para identificar e resolver problemas prontamente.",
+    "exp": "Ao longo de minha carreira, demonstrei minha capacidade de trabalhar com eficiência em equipes, lidando com alocação de tarefas, acompanhando o progresso, conduzindo revisões de código e fornecendo suporte técnico. Também estou familiarizado com plataformas, estruturas e componentes de código aberto, aproveitando seus benefícios para simplificar os processos de desenvolvimento. Com meu forte conhecimento de diversos setores, incluindo comércio eletrônico, serviços financeiros, gerenciamento de revendedores e aplicativos de rastreamento, estou bem equipado para fornecer soluções personalizadas para atender a requisitos comerciais específicos. Além disso, sou capaz de distribuir aplicativos para o Google Play Console, App Store e Firebase Hosting, garantindo maior alcance e disponibilidade para os usuários finais. Adaptar-se rapidamente a novos ambientes, tecnologias e desafios é um ponto forte que me permite permanecer na vanguarda do cenário de desenvolvimento de aplicativos móveis em constante evolução.",
+    "graduate": "Graduado em Geethanjali Institute of Science and Technology,",
+    "tec": "Tecnologias com as quais trabalhei",
+    "what_i_do": "O que eu faço",
+    "perfect": "Sou perfeito para desenvolver Apps",
+    "title_github": "GitHub",
+    "github": "Possuo um forte conhecimento dos comandos GitHub, GitLab e Bitbucket CI/CD. Além disso, utilizei o GitHub com sucesso para enviar meus próprios aplicativos para a App Store e a Google Play Store. Sou proficiente em executar solicitações de mesclagem, revisões de código e lidar com problemas de pull, push, rebase e mesclagem. \n @Suresh94",
+    "title_technologies": "Desenvolvimento completo de aplicativos",
+    "technologies":"Sou um desenvolvedor de aplicativos móveis qualificado com mais de 5 anos de experiência em desenvolvimento de Flutter e iOS. Com uma sólida compreensão das melhores práticas de desenvolvimento de software, dedico-me a fornecer aplicativos multiplataforma de alta qualidade que excedam as expectativas de meus clientes e de minha empresa.",
+
+    "sample": "Aqui estão algumas amostras do meu trabalho anterior",
+    "title_ui_ux":  "UI/UX Projetando",
+    "ui_ux": "Embora eu trabalhe principalmente como desenvolvedor Flutter, dou alta prioridade à UI/UX e me envolvo ativamente em tarefas de design de interface do usuário. Isso garante que os aplicativos de nossos clientes e nossos próprios aplicativos e sites sejam visualmente atraentes, fáceis de usar e melhorem a experiência geral do usuário.",
+    "portFolio": "PortFolio",
+    "samples": "Aqui estão algumas amostras do meu trabalho anterior",
+    "project_names": {
+      "polytok": "Polytok",
+      "ikon_linq": "iKon Linq",
+      "car_card": "Car Card",
+      "kitas": "Kitas Langue",
+      "kletter": "kletter schmitte"
+    },
+    "contact": "Contato",
+    "touch": "Vamos entrar em contato e construir algo juntos:)",
+    "phone": "Phone",
+    "email": "E-mail",
+    "location": "Localização"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "resume": {
+    "welcome": "నా వివరాలు స్వాగతం!",
+    "new": "New {} స్వాగతం",
+    "name": "Petluri Suresh",
+    "title": "Senior Flutter Developer",
+    "about": "నా గురించి",
+    "des": "",
+    "work": "",
+    "exp": "",
+    "tec": "",
+    "what_i_do": "నేను ఏమి చేస్తాను",
+    "perfect": "అప్లికేషన్\u200Cలను డెవలప్ చేయడానికి నేను పరిపూర్ణంగా ఉన్నాను",
+    "github": "",
+    "Technologies": "",
+    "prototyping": "",
+    "ui/ux": "",
+    "appDev": "",
+    "portFolio": "పోర్ట్\u200Cఫోలియో",
+    "samples": "నా మునుపటి పని యొక్క కొన్ని నమూనాలు ఇక్కడ ఉన్నాయి",
+    "project_names": {
+      "polytok": "Polytok",
+      "ikon_linq": "iKon Linq",
+      "car_card": "Car Card",
+      "kitas": "Kitas Langue",
+      "kletter": "kletter schmitte"
+    },
+    "contact": "సంప్రదించండి",
+    "phone": "ఫోన్",
+    "email": "ఇమెయిల్",
+    "location": "స్థానం"
+  }
+}

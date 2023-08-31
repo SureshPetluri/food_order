@@ -51,8 +51,9 @@ dependencies:
   google_sign_in: ^6.1.4
 
 #  these for local_stocks
-
-
+  get_storage: ^2.1.1
+  easy_localization: ^3.0.2
+  provider: ^6.0.5
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -80,6 +81,8 @@ flutter:
     - assest/img/
     - assest/images/
     - assest/images/desserts/
+    - assest/local_stocks/images/
+    - assest/local_stocks/i18n/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -6,10 +6,38 @@ void main() {
   // int result = factorial(5);
   // print("Factorial of $num is $result");
   String input = "ssSSSsureshss";
-   countCharacters(input.toLowerCase());
+  countCharacters(input.toLowerCase());
+
+  List<Map<String, int>> inMax = [
+    {"age": 2},
+    {"age": 89},
+    {"age": 23},
+    {"age": 98},
+    {"age": 23},
+    {"age": 3},
+    {"age": 9},
+    {"age": 14},
+    {"age": 3},
+    {"age": 12},
+    {"age": 12},
+    {"age": 2},
+    {"age": 3},
+    {"age": 25},
+    {"age": 2},
+    {"age": 3},
+    {"age": 2},
+    {"age": 2},
+  ];
+
+  inMax.sort((a, b) => a["age"]!.compareTo(b["age"]!));
+
+  for (var map in inMax) {
+    print("Age: ${map["age"]}");
+  }
+
 }
 
- countCharacters(String input) {
+countCharacters(String input) {
   Map<String, int> charCount = {};
   String finalOutput = "";
   for (int i = 0; i < input.length; i++) {

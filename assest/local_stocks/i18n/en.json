@@ -1,0 +1,44 @@
+
+
+
+{
+  "resume": {
+    "scroll": "Scroll to Top",
+    "new": "New Collection {} off",
+    "welcome": "WELCOME TO MY PORTFOLIO!",
+    "name": "Petluri Suresh",
+    "title": "Senior Flutter Developer",
+    "light": "Changed to Light Mode",
+    "dark": "Changed to Dark Mode",
+    "about": "About Me",
+    "des": "With over 5 years of industry experience in mobile application development, I have honed my skills in various areas. My expertise includes over 3 years of working with Flutter and 2+ years of iOS development experience. I am proficient in utilizing REST APIs, handling JSON data, implementing authentication mechanisms, integrating Google Maps, and incorporating push notifications. Additionally, I possess a strong understanding of state management techniques like GetX, Providers, and widgets in the Flutter framework, allowing me to create robust and efficient applications.",
+    "work":  "In terms of database management, I have hands-on experience with local storage solutions in Flutter, such as SQFlite, Get Storage, and Hive. Moreover, I am well-versed in utilizing serverless databases like Firebase, enabling seamless data integration and synchronization for enhanced app functionality. My expertise extends to debugging and troubleshooting existing code, utilizing effective problem-solving skills and log analysis techniques to identify and resolve issues promptly.",
+    "exp": "Throughout my career, I have demonstrated my ability to work effectively within teams by handling tasks allocation, tracking progress, conducting code reviews, and providing technical support. I am also familiar with open-source platforms, frameworks, and components, leveraging their benefits to streamline development processes. With my strong understanding of diverse industries, including e-commerce, financial services, dealer management, and tracking apps, I am well-equipped to deliver tailored solutions to meet specific business requirements. Furthermore, I am capable of distributing apps to the Google Play Console, App Store, and Firebase Hosting, ensuring wider reach and availability for end users. Adapting quickly to new environments, technologies, and challenges is a strength that allows me to stay at the forefront of the ever-evolving mobile application development landscape.",
+    "graduate": "Graduate from Geethanjali Institute of Science and Technology,",
+    "tec": "Technologies i have worked with",
+    "what_i_do": "What I Do",
+    "perfect": "I am perfect to develop Apps",
+    "title_github": "GitHub",
+    "github": "I possess a strong knowledge of GitHub, GitLab, and Bitbucket CI/CD commands. Additionally, I have successfully utilized GitHub to push my own apps to both the App Store and Google Play Store. I am proficient in performing merge requests, code reviews, and handling pull, push, rebase, and merging issues \n @Suresh94",
+    "title_technologies": "Full App Development ",
+    "technologies":"I'm a skilled Mobile Application developer with over 5 years of experience in Flutter and iOS development. With a robust understanding of software development best practices, I am dedicated to delivering high-quality, cross-platform applications that exceed the expectations of both my clients and my company.",
+
+    "sample": "Here are few sampls of myprevious work",
+    "title_ui_ux":  "UI/UX Designing",
+    "ui_ux": "Although I primarily work as a Flutter developer, I place a high priority on UI/UX and actively engage in UI design tasks. This ensures that both our clients' applications and our own apps and websites are visually appealing, user-friendly, and enhance the overall user experience.",
+    "portFolio": "PortFolio",
+    "samples": "Here are few samples of my previous work",
+    "project_names": {
+      "polytok": "Polytok",
+      "ikon_linq": "iKon Linq",
+      "car_card": "Car Card",
+      "kitas": "Kitas Langue",
+      "kletter": "kletter schmitte"
+    },
+    "contact": "Contact",
+    "touch": "Let's get in touch and build something together:)",
+    "phone": "Phone",
+    "email": "Email",
+    "location": "Location"
+  }
+}

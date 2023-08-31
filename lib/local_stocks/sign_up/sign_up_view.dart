@@ -62,8 +62,6 @@ class ColorSchemeApp extends StatelessWidget {
       onInverseSurface: Colors.white,
       inversePrimary: Colors.white,
       surfaceTint: Colors.orange,
-      primaryVariant: Colors.blue.shade900,
-      secondaryVariant: Colors.amber.shade900,
     );
   }
 }
@@ -125,10 +123,10 @@ class ColorSchemeScreen extends StatelessWidget {
           _buildColorBox(
               'Inverse Primary', Theme.of(context).colorScheme.inversePrimary),
           _buildColorBox('Surface Tint', Theme.of(context).colorScheme.surfaceTint),
-          _buildColorBox(
-              'Primary Variant', Theme.of(context).colorScheme.primaryVariant),
-          _buildColorBox(
-              'Secondary Variant', Theme.of(context).colorScheme.secondaryVariant),
+          // _buildColorBox(
+          //     'Primary Variant', Theme.of(context).colorScheme.primaryVariant),
+          // _buildColorBox(
+          //     'Secondary Variant', Theme.of(context).colorScheme.secondaryVariant),
         ],
       ),
     );

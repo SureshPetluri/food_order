@@ -1,8 +1,23 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:food_order/local_stocks/dash_board/dash_board_view.dart';
+import 'package:food_order/local_stocks/dash_board/dash_board_provider.dart';
 import 'package:food_order/local_stocks/themes/theme.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:provider/provider.dart';
+import 'app_repository/repository.dart';
+import 'constants/constants.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  await GetStorage.init(LOCAL_STORAGE);
+  runApp(
+      EasyLocalization(
+          supportedLocales: const [Locale('en'), Locale('es')],
+          path: 'assest/local_stocks/i18n', // <-- change the path of the translation files
+          fallbackLocale: const Locale('en'),
+          child: const MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -28,28 +43,44 @@ class _MyAppState extends State<MyApp> {
   }
   @override
   void didChangeDependencies() {
-    if(MediaQuery.of(context).platformBrightness == Brightness.dark){
+    if(Repository.isDark() == null){
+      if (MediaQuery.of(context).platformBrightness == Brightness.dark) {
+        Repository.changeTheme(true);
+      } else {
+        Repository.changeTheme(false);
+        _themeMode = ThemeMode.light;
+      }
+    }else if(Repository.isDark()==true){
       _themeMode = ThemeMode.dark;
     }else{
       _themeMode = ThemeMode.light;
-    }    super.didChangeDependencies();
+    }
+    super.didChangeDependencies();
   }
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeClass.lightTheme,
-      darkTheme: ThemeClass.darkTheme,
-      themeMode: _themeMode,
-      home: MyHomePage(
-        title: 'Flutter Demo Home Page',
-        changeTheme: changeTheme,
-         themeMode: _themeMode,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) =>DashBoardProvider()),
+      ],
+      child: MaterialApp(
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        debugShowCheckedModeBanner: false,
+        title: 'Local Stocks',
+        theme: ThemeClass.lightTheme(context),
+        darkTheme: ThemeClass.darkTheme(context),
+        themeMode: _themeMode,
+        home: DashBoard(
+          changeTheme: changeTheme,
+           themeMode: _themeMode,
+        ),
       ),
     );
   }
 }
+/*
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage(
@@ -137,3 +168,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+*/
