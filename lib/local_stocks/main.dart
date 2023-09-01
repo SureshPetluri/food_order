@@ -1,12 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:food_order/local_stocks/dash_board/dash_board_view.dart';
 import 'package:food_order/local_stocks/dash_board/dash_board_provider.dart';
+import 'package:food_order/local_stocks/profile/profile_provider.dart';
+import 'package:food_order/local_stocks/routes/routes_names.dart';
 import 'package:food_order/local_stocks/themes/theme.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
+
 import 'app_repository/repository.dart';
+import 'cart/cart_provider.dart';
 import 'constants/constants.dart';
+import 'home/home_provider.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -61,21 +65,38 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) =>DashBoardProvider()),
+        ChangeNotifierProvider(create: (_) => DashBoardProvider()),
+        ChangeNotifierProvider(create: (_) => CartProvider()),
+        ChangeNotifierProvider(create: (_) => HomeProvider()),
+        ChangeNotifierProvider(create: (_) => ProfileProvider()),
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
         debugShowCheckedModeBanner: false,
+        // initialRoute: ,
         title: 'Local Stocks',
         theme: ThemeClass.lightTheme(context),
         darkTheme: ThemeClass.darkTheme(context),
         themeMode: _themeMode,
-        home: DashBoard(
-          changeTheme: changeTheme,
-           themeMode: _themeMode,
-        ),
+        initialRoute: '/',
+        onGenerateRoute: (settings) {
+          print("settings.name....${settings.name}");
+          final routeName = settings.name;
+          final builder = AppPages(themeMode: _themeMode, changeTheme: changeTheme).routes[routeName];
+
+          if (builder != null) {
+            return MaterialPageRoute(builder: builder);
+          }
+
+          // Handle unknown route here if needed
+          return null;
+        },
+        // home: DashBoard(
+        //   changeTheme: changeTheme,
+        //    themeMode: _themeMode,
+        // ),
       ),
     );
   }

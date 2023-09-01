@@ -79,7 +79,7 @@ class ThemeClass {
             ),
           ),
           // hintStyle: AppTextTheme.robotoHintTextStyle,
-          contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 8),
+          contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
         );
   }
 

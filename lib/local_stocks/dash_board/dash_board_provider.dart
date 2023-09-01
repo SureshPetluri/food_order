@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class DashBoardProvider with ChangeNotifier {
-  int count = 0;
+
+  TextEditingController productSearchController = TextEditingController();
+
+
+
   List<Map<String, dynamic>> offerMap = [
     {
       "discount": "10%",
@@ -10,9 +14,4 @@ class DashBoardProvider with ChangeNotifier {
     {"discount": "20%", "imageUrl": "assest/local_stocks/images/lap.png"},
     {"discount": "30%", "imageUrl": "assest/local_stocks/images/lap.png"},
   ];
-
-  bottomNavSelection(int value) {
-    count = value;
-    notifyListeners();
-  }
 }
