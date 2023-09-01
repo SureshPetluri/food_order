@@ -78,20 +78,31 @@ class ProfileScreen extends StatelessWidget {
         },
         body: Column(
           children: [
+            sizedBox10(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                buildContainer(context,"Your Orders"),
-                buildContainer(context,"Buy Again"),
+                buildContainer(context, "Your Orders"),
+                buildContainer(context, "Buy Again"),
               ],
             ),
             sizedBox20(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                buildContainer(context,"Your Account"),
-                buildContainer(context,"Watch List"),
+                buildContainer(context, "Your Account"),
+                buildContainer(context, "Watch List"),
               ],
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 18.0, right: 18.0, top: 18.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Your Orders"),
+                  Text("See all"),
+                ],
+              ),
             ),
           ],
         ),

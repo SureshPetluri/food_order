@@ -82,7 +82,7 @@ class _MyAppState extends State<MyApp> {
         themeMode: _themeMode,
         initialRoute: '/',
         onGenerateRoute: (settings) {
-          print("settings.name....${settings.name}");
+          // print("settings.name....${settings.name}");
           final routeName = settings.name;
           final builder = AppPages(themeMode: _themeMode, changeTheme: changeTheme).routes[routeName];
 

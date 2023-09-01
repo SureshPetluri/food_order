@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:food_order/local_stocks/products_show/products_show_screen.dart';
 import 'package:food_order/local_stocks/profile/profile_screen.dart';
 
 import '../cart/cart_view.dart';
+import '../details/details_view.dart';
 import '../home/home_screen.dart';
 //
 // class AppPages {
@@ -57,6 +59,8 @@ class AppPages {
       ),
       '/cart': (context) => const CartScreen(),
       '/profile': (context) => const ProfileScreen(),
+      '/products': (context) => const ProductsShowScreen(),
+      '/productDetails': (context) => const ProductDetailsScreen(),
 
     };
   }

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Details extends StatelessWidget {
-  const Details({Key? key}) : super(key: key);
+class ProductDetailsScreen extends StatelessWidget {
+  const ProductDetailsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Center(
+        child: Text("ProductDetailsScreen"),
+      ),
+    );
   }
 }
