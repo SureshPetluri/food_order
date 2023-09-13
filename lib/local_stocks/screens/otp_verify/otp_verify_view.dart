@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
   Route<dynamic>? name(settings) {
       if (settings.name == '/') {
         return MaterialPageRoute(
-          builder: (context) => HomeScreen(),
+          builder: (context) => const HomeScreen(),
         );
       } else if (settings.name == '/details') {
         return MaterialPageRoute(
@@ -30,22 +31,24 @@ class MyApp extends StatelessWidget {
     }
 }
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     // final counterProvider = Provider.of<CounterProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(title: Text('Home')),
+      appBar: AppBar(title: const Text('Home')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Counter: '),
+            const Text('Counter: '),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/details');
               },
-              child: Text('Go to Details'),
+              child: const Text('Go to Details'),
             ),
           ],
         ),
@@ -54,29 +57,31 @@ class HomeScreen extends StatelessWidget {
         onPressed: () {
           // counterProvider.incrementCounter();
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
 }
 
 class DetailsScreen extends StatelessWidget {
+  const DetailsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     // final counterProvider = Provider.of<CounterProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(title: Text('Details')),
+      appBar: AppBar(title: const Text('Details')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Counter: '),
+            const Text('Counter: '),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Go back'),
+              child: const Text('Go back'),
             ),
           ],
         ),
