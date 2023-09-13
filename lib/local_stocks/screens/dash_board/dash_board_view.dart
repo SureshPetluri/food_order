@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:food_order/local_stocks/custom_widgets/const_widgets.dart';
-import 'package:food_order/local_stocks/custom_widgets/switch_modes.dart';
-import 'package:food_order/local_stocks/dash_board/dash_board_provider.dart';
 import 'package:provider/provider.dart';
-
+import '../custom_widgets/const_widgets.dart';
 import '../custom_widgets/custom_drop_down.dart';
+import '../custom_widgets/switch_modes.dart';
+import 'dash_board_provider.dart';
 import 'dash_board_widgets/offer_show.dart';
 
 class DashBoard extends StatefulWidget {

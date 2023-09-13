@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_order/local_stocks/cart/cart_view.dart';
-import 'package:food_order/local_stocks/dash_board/dash_board_view.dart';
 import 'package:provider/provider.dart';
-
+import '../cart/cart_view.dart';
+import '../dash_board/dash_board_view.dart';
 import '../profile/profile_screen.dart';
 import 'home_provider.dart';
 

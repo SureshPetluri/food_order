@@ -32,7 +32,7 @@ class ProfileScreen extends StatelessWidget {
                           "Local Stocks",
                           style: TextStyle(fontSize: 24),
                         ),
-                        Spacer(),
+                         Spacer(),
                         Icon(Icons.notifications_active_outlined),
                         sizedBoxWidth10(),
                         Icon(Icons.search),

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:food_order/local_stocks/products_show/products_show_screen.dart';
-import 'package:food_order/local_stocks/profile/profile_screen.dart';
-
-import '../cart/cart_view.dart';
-import '../details/details_view.dart';
-import '../home/home_screen.dart';
+import '../screens/cart/cart_view.dart';
+import '../screens/details/details_view.dart';
+import '../screens/home/home_screen.dart';
+import '../screens/products_show/products_show_screen.dart';
+import '../screens/profile/profile_screen.dart';
 //
 // class AppPages {
 //   static List<Route> generateRoutes(BuildContext context) {

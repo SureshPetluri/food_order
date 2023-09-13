@@ -24,7 +24,7 @@ class ThemeClass {
   Color orange = const Color(0xFF9800FF);
   Color red = const Color(0xFFF44336);
   Color redShadow100 = const Color(0xFFFFCDD2);
-  Color green = const Color(0xFF4CAF50);
+  Color green = const Color(0xff0d790d);
   Color greenShadow100 = const Color(0xFFC8E6C9);
 
   static ThemeData lightTheme(BuildContext context) {
@@ -35,8 +35,8 @@ class ThemeClass {
       inputDecorationTheme: inputDecoration(context),
       colorScheme: const ColorScheme.light().copyWith(
         primary: themeClass.white,
-        onPrimary: themeClass.white,
-        primaryContainer: themeClass.blueShade100,
+        onPrimary: themeClass.black,
+        primaryContainer: themeClass.blue,
         onPrimaryContainer: themeClass.black,
         secondary: themeClass.amber,
         onSecondary: themeClass.black,
@@ -85,14 +85,13 @@ class ThemeClass {
 
   static ThemeData darkTheme(BuildContext context) {
     final themeClass = ThemeClass(context);
-
     return ThemeData(
       useMaterial3: true,
       inputDecorationTheme: inputDecoration(context),
       primaryColor: ThemeData.dark().scaffoldBackgroundColor,
       colorScheme: const ColorScheme.dark().copyWith(
         primary: themeClass.black,
-        onPrimary: themeClass.white,
+        onPrimary: themeClass.black,
         primaryContainer: themeClass.blueShade100,
         //Colors.blue.shade100,
         onPrimaryContainer: themeClass.black,
@@ -128,3 +127,13 @@ class ThemeClass {
 }
 
 
+class MyWidger extends StatelessWidget {
+  const MyWidger({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(child: Text("My Scaffold Widget",style: TextStyle(color: Theme.of(context).primaryColor),),),
+    );
+  }
+}
