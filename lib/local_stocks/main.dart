@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:food_order/local_stocks/routes/routes_names.dart';
+import 'package:food_order/local_stocks/screens/terms_conditions/terms_conditions.dart';
 import 'package:food_order/local_stocks/themes/theme.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
@@ -92,7 +93,7 @@ class _MyAppState extends State<MyApp> {
           // Handle unknown route here if needed
           return null;
         },
-        // home: DashBoard(
+        //  home: TermsAndConditionsScreen()
         //   changeTheme: changeTheme,
         //    themeMode: _themeMode,
         // ),
